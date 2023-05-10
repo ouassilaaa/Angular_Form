@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {FormBuilder, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,22 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'AngularForm';
+  registerForm= this.fb.group({
+    prénom:['',Validators.required],
+    motdepasse:['',Validators.required],
+    email:['',[Validators.required,Validators.email]]
+  });
+  isSubmitted=false; 
+
+  constructor(private fb: FormBuilder){
+
+  } 
+
+  onSubmit():void {
+    console.log('submitted form',
+     this.registerForm.value,
+     this.registerForm.invalid
+    );
+    this.isSubmitted=true;
+  }
 }

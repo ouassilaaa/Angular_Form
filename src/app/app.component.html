@@ -1,17 +1,31 @@
 <h1>Angular Form Training </h1>
 
-<form class="form">
+<form class="form" [formGroup]="registerForm" (ngSubmit)="onSubmit()" >
   <div class="field">
     <label class="label"> Prénom </label>
-    <input type="text" class="input"/>
+    <input 
+    type="text"  
+    class="input"
+    formControlName="prénom"
+    [class.invalid]="registerForm.get('prénom')?.invalid &&
+    (registerForm.get('prénom')?.dirty || 
+    registerForm.get('prénom')?.touched ||isSubmitted)
+    "
+    />
   </div>
   <div class="field">
     <label class="label"> Email </label>
-    <input type="text" class="input"/>
+    <input type="text" class="input" formControlName="email"
+    [class.invalid]="registerForm.get('email')?.invalid &&
+    (registerForm.get('email')?.dirty || registerForm.get('email')?.touched ||isSubmitted)
+    "/>
   </div>
   <div class="field">
     <label class="label"> Mot de passe </label>
-    <input type="text" class="input"/>
+    <input type="text" class="input" formControlName="motdepasse"
+    [class.invalid]="registerForm.get('motdepasse')?.invalid &&
+    (registerForm.get('motdepasse')?.dirty || registerForm.get('motdepasse')?.touched ||isSubmitted)
+    " />
   </div>
 
   <div>
